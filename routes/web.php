@@ -13,4 +13,11 @@
 
 Route::get('/', function () {
     return view('welcome');
+    //return view('backend.login');
+});
+
+Route::group(['namespace' => 'Admin'], function () {
+    Route::group(['prefix' => 'login'], function () {
+        Route::get('/','LoginController@getLogin');
+    });
 });
