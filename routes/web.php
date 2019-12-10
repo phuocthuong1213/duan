@@ -30,8 +30,23 @@ Route::group(['namespace' => 'Admin'], function () {
             Route::post('/','CategoryController@postCate');
 
             Route::get('edit/{id}','CategoryController@getEditCate');
+            Route::post('edit/{id}','CategoryController@postEditCate');
 
             Route::get('delete/{id}','CategoryController@getDeleteCate');
+        });
+
+        Route::group(['prefix' => 'product'], function () {
+            Route::get('/','ProductController@getProduct');
+
+
+            Route::get('add','ProductController@getAddProduct');
+            Route::post('add','ProductController@postAddProduct');
+
+
+            Route::get('edit/{id}','ProductController@getEditProduct');
+            Route::post('edit/{id}','ProductController@postEditProduct');
+
+            Route::get('delete/{id}','ProductController@getDeleteProduct');
         });
     });
 });

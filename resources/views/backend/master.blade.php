@@ -8,7 +8,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/datepicker3.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
-<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="../../editor/ckeditor/ckeditor.js"></script>
 <script src="js/lumino.glyphs.js"></script>
 </head>
 <body>
@@ -43,9 +43,6 @@
 
     <!--Main-->
     @yield('main')
-
-
-
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/chart.min.js"></script>
@@ -54,8 +51,7 @@
 	<script src="js/easypiechart-data.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script>
-		$('#calendar').datepicker({
-		});
+		$('#calendar').datepicker({});
 
 		!function ($) {
 		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
@@ -70,6 +66,22 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
+
+		$("#input-img").change(function() {
+ 			readURL(this);
+		});
+
+		function readURL(input) {
+		if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				
+				reader.onload = function(e) {
+				$('#preview-img').attr('src', e.target.result);
+				}
+				
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
 	</script>	
 </body>
 

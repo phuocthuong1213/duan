@@ -15,10 +15,25 @@
 							Sửa danh mục
 						</div>
 						<div class="panel-body">
-							<div class="form-group">
-								<label>Tên danh mục:</label>
-    							<input type="text" name="name" class="form-control" placeholder="Tên danh mục...">
-							</div>
+						
+							<form action="" method="post">
+									@csrf
+									@if (isset($error))
+										<p class="alert alert-danger">Tên bị trùng mời bạn kiểm lại</p>
+									@endif
+										<div class="form-group">
+											<label>Tên danh mục:</label>
+											<input type="text" name="name" class="form-control" placeholder="Tên danh mục..." value="{{$cate->cate_name}}">
+										</div>
+		
+										<div class="form-group">
+											<input type="submit" name="submit" class="form-control btn btn-primary" placeholder="" value="Sửa">
+										</div>
+		
+										<div class="form-group">
+											<a href="{{asset('admin/category')}}" class="form-control  btn btn-danger" >Hủy bỏ</a>
+										</div>																			
+							</form>
 						</div>
 					</div>
 			</div>
