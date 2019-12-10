@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use Str;
+use DB;
 class ProductController extends Controller
 {
     public function getProduct(){
-        return view('backend.product');
+        $data['productlist'] = DB::table('products')->join('categories','products.pro_cate','=','categories.cate_id')->orderBy('pro_id','desc')->get();
+        return view('backend.product',$data);
     }
 
     public function getAddProduct(){
@@ -19,7 +21,7 @@ class ProductController extends Controller
     }
 
     public function postAddProduct(Request $request){
-        $filename = $request->img->getClientOriginalExtension();
+        $filename = $request->img->getClientOriginalName();
         $product = new Product;
         $product->pro_name = $request->name;
         $product->pro_slug = Str::slug($request->name);
@@ -38,8 +40,10 @@ class ProductController extends Controller
         return back();
     }
 
-    public function getEditProduct(){
-        return view('backend.editproduct');
+    public function getEditProduct($id){
+        $data['product'] = Product::find($id);
+        $data['listcate'] = Category::all();
+        return view('backend.editproduct',$data);
     }
 
     public function postEditProduct(){
