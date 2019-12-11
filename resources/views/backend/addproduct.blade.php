@@ -26,11 +26,18 @@
 										<label>Giá sản phẩm</label>
 										<input required type="number" name="price" class="form-control">
 									</div>
-									<div class="form-group" >
+									{{-- <div class="form-group" >
 										<label>Ảnh sản phẩm</label>
 										<input required id="input-img" type="file" name="img" class="form-control">
 										<img id="preview-img" class="thumbnail" width="300px" src="img/new_seo-10-512.png">
+									</div> --}}
+
+									<div class="form-group" >
+										<label>Ảnh sản phẩm</label>
+										<input required id="img" type="file" name="img" class="form-control hidden" onchange="changeImg(this)">
+					                    <img id="avatar" class="thumbnail" width="300px" src="img/new_seo-10-512.png">
 									</div>
+									
 									<div class="form-group" >
 										<label>Phụ kiện</label>
 										<input required type="text" name="accessories" class="form-control">

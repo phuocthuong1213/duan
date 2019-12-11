@@ -52,7 +52,6 @@
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script>
 		$('#calendar').datepicker({});
-
 		!function ($) {
 		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
 		        $(this).find('em:first').toggleClass("glyphicon-minus");      
@@ -66,22 +65,24 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-
-		$("#input-img").change(function() {
- 			readURL(this);
-		});
-
-		function readURL(input) {
-		if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				
-				reader.onload = function(e) {
-				$('#preview-img').attr('src', e.target.result);
-				}
-				
-				reader.readAsDataURL(input.files[0]);
-			}
+		function changeImg(input){
+		    //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
+		    if(input.files && input.files[0]){
+		        var reader = new FileReader();
+		        //Sự kiện file đã được load vào website
+		        reader.onload = function(e){
+		            //Thay đổi đường dẫn ảnh
+		            $('#avatar').attr('src',e.target.result);
+		        }
+		        reader.readAsDataURL(input.files[0]);
+		    }
 		}
+		$(document).ready(function() {
+		    $('#avatar').click(function(){
+		        $('#img').click();
+		    });
+		});
+		
 	</script>	
 </body>
 

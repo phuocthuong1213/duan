@@ -46,11 +46,30 @@ class ProductController extends Controller
         return view('backend.editproduct',$data);
     }
 
-    public function postEditProduct(){
-        
+    public function postEditProduct(Request $request,$id){
+        $product = new Product;
+            $arr['pro_name'] = $request->name;
+            $arr['pro_slug'] = Str::slug($request->name);
+            $arr['pro_price']= $request->price;
+            $arr['pro_accessories'] = $request->accessories;
+            $arr['pro_warranty'] = $request->warranty;
+            $arr['pro_promotion'] = $request->promotion;
+            $arr['pro_condition'] = $request->condition;
+            $arr['pro_status'] = $request->status;
+            $arr['pro_description'] = $request->description;
+            $arr['pro_cate']= $request->cate;
+            $arr['pro_featured'] = $request->featured;
+        if($request->hasFile('img')){
+            $img = $request->img->getClientOriginalName();
+            $arr['pro_img'] = $img;
+            $request->img->storeAs('avarta'.$img);
+        }
+        $product::where('pro_id',$id)->update($arr); 
+        return redirect()->to('admin/product');
     }
 
-    public function getDeleteProduct(){
-        
+    public function getDeleteProduct($id){
+        Product::destroy($id);
+        return back();
     }
 }

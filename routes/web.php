@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-    //return view('backend.login');
-});
+Route::get('/','FrontendController@getHome');
 
+Route::get('detail/{id}/{slug}.html','FrontendController@getDetail');
 Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'login','middleware'=>'CheckLogedIn'], function () {
         Route::get('/','LoginController@getLogin');

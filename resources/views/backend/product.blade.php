@@ -40,7 +40,7 @@
 												<td>{{$product->cate_name}}</td>
 												<td>
 													<a href="{{asset('admin/product/edit/'.$product->pro_id)}}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-													<a href="{{asset('admin/product/delete/'.$product->pro_id)}} " class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+													<a href="{{asset('admin/product/delete/'.$product->pro_id)}}" onclick="return confirm('Bạn có muốn xóa không !!!')" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
 												</td>
 											</tr>
 										@endforeach
